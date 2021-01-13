@@ -11,12 +11,10 @@ export const Card: FunctionComponent<CardProps> = (props: CardProps) => {
   const {
     monster: { id, name, email },
   } = props
+  const endpoint = `https://robohash.org/${id}?set=set2&size=180x180`
   return (
     <div className="card">
-      <img
-        alt="monster"
-        src={`https://robohash.org/${id}?set=set2&size=180x180`}
-      />
+      <img alt="monster" src={endpoint} />
       <h3>{name}</h3>
       <p>{email}</p>
     </div>
