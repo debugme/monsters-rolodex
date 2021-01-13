@@ -1,0 +1,8 @@
+node_modules/
+public/
+.gitignore
+.nvmrc
+.prettierignore
+package-lock.json
+README.md
+tsconfig.json

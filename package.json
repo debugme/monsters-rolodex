@@ -1,43 +1,40 @@
 {
   "name": "monsters-rolodex",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.3",
-    "@testing-library/user-event": "^12.6.0",
-    "@types/jest": "^26.0.20",
-    "@types/node": "^12.19.13",
-    "@types/react": "^16.14.2",
-    "@types/react-dom": "^16.9.10",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
-    "typescript": "^4.1.3",
-    "web-vitals": "^0.2.4"
+  "engines": {
+    "node": "15.5.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "http-server",
+    "build": "rimraf dist && parcel build --out-dir public source/index.tsx",
+    "start:dev": "PARCEL_WORKERS=1 parcel source/index.html --hmr-port 1235",
+    "docker:build:image": "docker build . -f Dockerfile -t debugme/monsters-rolodex ",
+    "docker:run:container": "docker run -it -p 1234:1234 -p 1235:1235 -v $(pwd)/source:/app/source debugme/monsters-rolodex",
+    "docker:run:shell": "docker run -it debugme/monsters-rolodex sh",
+    "docker:connect:shell": "docker exec -it `docker ps | grep monsters | awk '{ print $1}'` sh",
+    "clean:install": "rimraf node_modules .cache dist && npm install"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@types/node": "12.19.13",
+    "@types/react": "16.14.2",
+    "@types/react-dom": "16.9.10",
+    "@types/rimraf": "3.0.0",
+    "eslint": "7.17.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-prettier": "7.1.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-react": "7.22.0",
+    "http-server": "^0.12.3",
+    "parcel-bundler": "1.12.4",
+    "prettier": "2.2.1",
+    "rimraf": "3.0.2",
+    "typac": "0.1.10",
+    "typescript": "4.1.3"
   }
 }

@@ -1,0 +1,14 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.page-wrapper {
+  margin: 0 auto;
+  width: 85vw;
+  height: 100%;
+  background-color: rgb(230, 240, 248);
+}
