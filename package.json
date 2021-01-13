@@ -4,6 +4,7 @@
   "engines": {
     "node": "15.5.1"
   },
+  "homepage": "https://debugme.github.io/monsters-rolodex",
   "scripts": {
     "start": "http-server",
     "build": "rimraf dist && parcel build --out-dir public source/index.tsx",
@@ -12,7 +13,9 @@
     "docker:run:container": "docker run -it -p 1234:1234 -p 1235:1235 -v $(pwd)/source:/app/source debugme/monsters-rolodex",
     "docker:run:shell": "docker run -it debugme/monsters-rolodex sh",
     "docker:connect:shell": "docker exec -it `docker ps | grep monsters | awk '{ print $1}'` sh",
-    "clean:install": "rimraf node_modules .cache dist && npm install"
+    "clean:install": "rimraf node_modules .cache dist && npm install",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public"
   },
   "dependencies": {
     "react": "17.0.1",
@@ -30,6 +33,7 @@
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-react": "7.22.0",
+    "gh-pages": "^3.1.0",
     "http-server": "^0.12.3",
     "parcel-bundler": "1.12.4",
     "prettier": "2.2.1",
